@@ -1,4 +1,4 @@
-package com.example.OSCServer;
+package ust.jzhuaq.drumPC;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;

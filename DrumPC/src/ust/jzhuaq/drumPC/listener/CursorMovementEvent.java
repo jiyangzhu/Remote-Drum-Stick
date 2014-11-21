@@ -1,8 +1,9 @@
-package com.example.listener;
+package ust.jzhuaq.drumPC.listener;
 
 import java.util.EventObject;
 
-import com.example.OSCServer.Cursor;
+import ust.jzhuaq.drumPC.Cursor;
+
 
 public class CursorMovementEvent extends EventObject{
 

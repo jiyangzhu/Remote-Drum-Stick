@@ -1,4 +1,4 @@
-package com.example.OSCServer;
+package ust.jzhuaq.drumPC;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiChannel;
@@ -12,7 +12,8 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
 import javax.sound.midi.Track;
 
-import com.example.OSCServer.Util.Constants;
+import ust.jzhuaq.drumPC.Util.Constants;
+
 
 /**
  * SoundEvent object

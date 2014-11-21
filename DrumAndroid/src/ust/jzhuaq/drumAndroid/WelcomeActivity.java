@@ -1,4 +1,4 @@
-package com.example.oscclient;
+package ust.jzhuaq.drumAndroid;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,12 +15,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends ActionBarActivity {
+/**
+ * The welcome activity allow user to connect PC by entering IP address
+ * @author Bryce
+ *
+ */
+public class WelcomeActivity extends ActionBarActivity {
 	EditText etAddress;
 	EditText etMSG;
 	
@@ -80,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
 							.getText().toString()), Config.port);
 					Log.i("TAG", "Link established");
 					Intent i = new Intent();
-					i.setClass(MainActivity.this, ControlPanel.class);
+					i.setClass(WelcomeActivity.this, ControlPanel.class);
 					startActivity(i);
 				} catch (SocketException | UnknownHostException e) {
 					// TODO Auto-generated catch block

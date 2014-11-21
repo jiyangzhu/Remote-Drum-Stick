@@ -1,8 +1,9 @@
-package com.example.listener;
+package ust.jzhuaq.drumPC.listener;
 
 import javax.swing.JLabel;
 
-import com.example.OSCServer.MainFrame;
+import ust.jzhuaq.drumPC.MainFrame;
+
 
 public class StateChangeHandle implements StateChangeListener {
 	private JLabel jl;

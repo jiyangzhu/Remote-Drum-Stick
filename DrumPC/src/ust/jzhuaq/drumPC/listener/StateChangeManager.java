@@ -1,10 +1,11 @@
-package com.example.listener;
+package ust.jzhuaq.drumPC.listener;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import com.example.OSCServer.Cursor;
+import ust.jzhuaq.drumPC.Cursor;
+
 
 public class StateChangeManager {
 	private Collection<StateChangeListener> listeners;

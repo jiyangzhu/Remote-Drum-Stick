@@ -1,4 +1,4 @@
-package com.example.oscclient.util;
+package ust.jzhuaq.drumAndroid.util;
 
 public class Commands {
 

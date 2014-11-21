@@ -1,4 +1,4 @@
-package com.example.OSCServer;
+package ust.jzhuaq.drumPC;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,10 +19,11 @@ import javax.swing.SwingConstants;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
-import com.example.listener.CursorMovementHandle;
-import com.example.listener.StateChangeHandle;
-import com.example.listener.StateChangeListener;
-import com.example.listener.StateChangeManager;
+import ust.jzhuaq.drumPC.listener.CursorMovementHandle;
+import ust.jzhuaq.drumPC.listener.StateChangeHandle;
+import ust.jzhuaq.drumPC.listener.StateChangeListener;
+import ust.jzhuaq.drumPC.listener.StateChangeManager;
+
 import javax.swing.JTextField;
 
 

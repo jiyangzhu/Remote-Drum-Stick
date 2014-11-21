@@ -1,4 +1,4 @@
-package com.example.OSCServer;
+package ust.jzhuaq.drumPC;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -12,8 +12,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import com.example.OSCServer.Util.Constants;
-import com.example.OSCServer.Util.Mouse;
+import ust.jzhuaq.drumPC.Util.Constants;
+import ust.jzhuaq.drumPC.Util.Mouse;
+
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;

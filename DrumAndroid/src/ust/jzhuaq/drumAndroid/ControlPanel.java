@@ -1,4 +1,4 @@
-package com.example.oscclient;
+package ust.jzhuaq.drumAndroid;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.example.oscclient.util.Commands;
+import ust.jzhuaq.drumAndroid.util.Commands;
+
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortOut;
 
@@ -22,6 +23,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * The main control activity to detect motion and send msg to PC
+ * @author Bryce
+ *
+ */
 public class ControlPanel extends Activity implements SensorEventListener {
 
 	private OSCPortOut sender;
@@ -266,7 +272,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 		protected String doInBackground(OSCMessage... params) {
 
 			try {
-				MainActivity.sender.send(params[0]);
+				WelcomeActivity.sender.send(params[0]);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

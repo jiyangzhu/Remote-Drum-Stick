@@ -1,4 +1,4 @@
-package com.example.OSCServer.Util;
+package ust.jzhuaq.drumPC.Util;
 
 import java.awt.AWTException;
 import java.awt.GraphicsDevice;
@@ -11,8 +11,9 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.util.List;
 
-import com.example.OSCServer.Cursor;
-import com.example.OSCServer.MainFrame;
+import ust.jzhuaq.drumPC.Cursor;
+import ust.jzhuaq.drumPC.MainFrame;
+
 
 public class Mouse {
 	private Robot robot;
