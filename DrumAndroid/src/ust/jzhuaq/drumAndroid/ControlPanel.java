@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ust.jzhuaq.drumAndroid.util.Commands;
+import ust.jzhuaq.drumAndroid.util.Constants;
 
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortOut;
@@ -105,7 +105,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 	 */
 	public void click(View v) {
 		//Log.i("TAG", "Click button click.");
-		sendMouseEvent(Commands.EVENT_CLICK, 0, 0, 0);
+		sendMouseEvent(Constants.EVENT_CLICK, 0, 0, 0);
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 				lastY = currY;
 				lastZ = currZ;
 			}
-			sendMouseEvent(Commands.EVENT_CURSOR,
+			sendMouseEvent(Constants.EVENT_CURSOR,
 					currX - lastX, currY - lastY, currZ - lastZ);
 
 		}
@@ -218,7 +218,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 			float xxx = (float) ((x - lastX) / 2);
 			float yyy = (float) ((y - lastY) / 2);
 			Log.i("Mouse Move From Sender", "" + xxx + " - " + yyy);
-			this.sendMouseEvent(Commands.EVENT_CURSOR, (int) xxx * multiPara,
+			this.sendMouseEvent(Constants.EVENT_CURSOR, (int) xxx * multiPara,
 					(int) yyy * multiPara, 0);
 		}
 

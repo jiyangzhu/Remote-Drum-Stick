@@ -7,6 +7,11 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.apache.commons.validator.routines.InetAddressValidator;
+
+import ust.jzhuaq.drumAndroid.dialog.IpValidationDialog;
+import ust.jzhuaq.drumAndroid.util.Constants;
+
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortOut;
 
@@ -24,8 +29,9 @@ import android.widget.EditText;
  *
  */
 public class WelcomeActivity extends ActionBarActivity {
-	EditText etAddress;
-	EditText etMSG;
+	private EditText etAddress;
+	private EditText etMSG;
+	private String ipString;
 	
 	public static OSCPortOut sender;
 	
@@ -39,8 +45,16 @@ public class WelcomeActivity extends ActionBarActivity {
 	public void connect(View v) {
 		Log.i("TAG", "Click connect button.");
 		Log.i("TAG", "Input IP is: " + etAddress.getText().toString());
-		Log.i("TAG", "Port is: " + Config.port);
-		new establishConnect().execute(etAddress.getText().toString());
+		Log.i("TAG", "Port is: " + Constants.port);
+		ipString = etAddress.getText().toString();
+		InetAddressValidator iav = new InetAddressValidator();
+		if((ipString != null)&&iav.isValid(ipString)){
+			new establishConnect().execute(etAddress.getText().toString());
+		} else {
+			IpValidationDialog ipValidationDialog = new IpValidationDialog(this);
+			ipValidationDialog.show();
+		}
+		
 		/*
 		 * try { sender = new
 		 * OSCPortOut(InetAddress.getByName(etAddress.getText() .toString()),
@@ -80,7 +94,7 @@ public class WelcomeActivity extends ActionBarActivity {
 
 				try {
 					sender = new OSCPortOut(InetAddress.getByName(etAddress
-							.getText().toString()), Config.port);
+							.getText().toString()), Constants.port);
 					Log.i("TAG", "Link established");
 					Intent i = new Intent();
 					i.setClass(WelcomeActivity.this, ControlPanel.class);
