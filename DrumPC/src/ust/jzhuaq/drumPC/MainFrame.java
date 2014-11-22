@@ -6,12 +6,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import ust.jzhuaq.drumPC.Util.Constants;
 import ust.jzhuaq.drumPC.listener.CursorMovementHandle;
 import ust.jzhuaq.drumPC.listener.StateChangeHandle;
 import ust.jzhuaq.drumPC.listener.StateChangeManager;
@@ -98,7 +101,7 @@ public class MainFrame extends JFrame {
 				(int) frameSize.getHeight()));
 		frame.getContentPane().add(drumsPanel);
 
-		JButton btnCrybal_0 = new JButton("Cymbal");
+		JButton btnCrybal_0 = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_0)));
 		btnCrybal_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[0].play();
@@ -111,7 +114,7 @@ public class MainFrame extends JFrame {
 		gbc_btnCrybal_0.gridy = 0;
 		drumsPanel.add(btnCrybal_0, gbc_btnCrybal_0);
 
-		JButton btnToms_0 = new JButton("Mounted Tom");
+		JButton btnToms_0 = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_1)));
 		btnToms_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[1].play();
@@ -125,7 +128,7 @@ public class MainFrame extends JFrame {
 		gbc_btnToms_0.gridheight = 2;
 		drumsPanel.add(btnToms_0, gbc_btnToms_0);
 
-		JButton btnToms_1 = new JButton("Mounted Tom");
+		JButton btnToms_1 = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_2)));
 		btnToms_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[2].play();
@@ -139,7 +142,7 @@ public class MainFrame extends JFrame {
 		gbc_btnToms_1.gridheight = 2;
 		drumsPanel.add(btnToms_1, gbc_btnToms_1);
 
-		JButton btnCrybal_1 = new JButton("Cymbal");
+		JButton btnCrybal_1 = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_3)));
 		btnCrybal_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[3].play();
@@ -152,7 +155,7 @@ public class MainFrame extends JFrame {
 		gbc_btnCrybal_1.gridy = 0;
 		drumsPanel.add(btnCrybal_1, gbc_btnCrybal_1);
 
-		JButton btnSnare = new JButton("Snare drum");
+		JButton btnSnare = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_4)));
 		btnSnare.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[4].play();
@@ -166,7 +169,8 @@ public class MainFrame extends JFrame {
 		gbc_btnSnare.gridheight = 2;
 		drumsPanel.add(btnSnare, gbc_btnSnare);
 
-		JButton btnBass = new JButton("Bass drum");
+		JButton btnBass = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_5)));
+
 		btnBass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[5].play();
@@ -180,7 +184,7 @@ public class MainFrame extends JFrame {
 		gbc_btnBass.gridwidth = 2;
 		drumsPanel.add(btnBass, gbc_btnBass);
 
-		JButton btnFloor = new JButton("Floor drum");
+		JButton btnFloor = new JButton(new ImageIcon(getClass().getClassLoader().getResource(Constants.PATH_DRUM_6)));
 		btnFloor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				sound[6].play();

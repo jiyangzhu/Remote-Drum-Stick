@@ -23,5 +23,12 @@ public class Constants {
 	public final static int NOTE_HI_HAT_CLOSED = 42;
 	public final static int NOTE_HI_HAT_PEDAL = 44;
 	public final static int NOTE_HI_HAT_OPEN = 46;
-
+	
+	public final static String PATH_DRUM_0 = "images/img_0.png";
+	public final static String PATH_DRUM_1 = "images/img_1.png";
+	public final static String PATH_DRUM_2 = "images/img_2.png";
+	public final static String PATH_DRUM_3 = "images/img_3.png";
+	public final static String PATH_DRUM_4 = "images/img_4.png";
+	public final static String PATH_DRUM_5 = "images/img_5.png";
+	public final static String PATH_DRUM_6 = "images/img_6.png";
 }
