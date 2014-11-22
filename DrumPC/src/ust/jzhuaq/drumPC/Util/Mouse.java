@@ -23,7 +23,7 @@ public class Mouse {
 	private GraphicsDevice[] gDevices;
 	private Rectangle[] gBounds;
 
-	private static final float sensitivity = 4f;
+	private static final float sensitivity = 5f;
 
 	int currX;
 	int currY;
@@ -55,36 +55,18 @@ public class Mouse {
 		try {
 			x = Integer.parseInt(args.get(3).toString());
 		} catch (Exception e) {
-			System.out.println("x");
 			x = 0;
 		}
 		try {
 			y = Integer.parseInt(args.get(4).toString());
 		} catch (Exception e) {
-			System.out.println("y");
 			y = 0;
 		}
 		try {
 			z = Integer.parseInt(args.get(5).toString());
 		} catch (Exception e) {
-			System.out.println("z");
 			z = 0;
 		}
-		/*if ((args.get(3) == null) || args.get(3).toString().isEmpty())
-			x = 0;
-		else
-			x = Integer.parseInt(args.get(3).toString());
-
-		if ((args.get(4) == null) || args.get(4).toString().isEmpty())
-			y = 0;
-		else
-			y = Integer.parseInt(args.get(4).toString());
-
-		if ((args.get(5) == null) || args.get(5).toString().isEmpty())
-			z = 0;
-		else
-			z = Integer.parseInt(args.get(5).toString());
-*/
 		switch (type) {
 		case Constants.EVENT_CLICK:
 			mouseClick(0);
@@ -108,13 +90,11 @@ public class Mouse {
 			this.robot.waitForIdle();
 			this.robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			this.robot.waitForIdle();
-			System.out.println("Click left");
 			break;
 
 		case 1:
 			this.robot.mousePress(InputEvent.BUTTON3_MASK);
 			this.robot.mouseRelease(InputEvent.BUTTON3_MASK);
-			System.out.println("Click right");
 			break;
 		default:
 			break;

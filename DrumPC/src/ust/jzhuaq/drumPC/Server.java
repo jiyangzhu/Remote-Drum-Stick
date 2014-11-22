@@ -1,18 +1,10 @@
 package ust.jzhuaq.drumPC;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import ust.jzhuaq.drumPC.Util.Constants;
 import ust.jzhuaq.drumPC.Util.Mouse;
 
 import com.illposed.osc.OSCListener;
@@ -31,7 +23,6 @@ public class Server {
 		try {
 			mouse = new Mouse();
 		} catch (AWTException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -72,6 +63,8 @@ public class Server {
 				} catch (SocketException e) {
 					e.printStackTrace();
 					System.out.println("error" + e);
+				} catch (IllegalArgumentException e) {
+					System.out.println("address error" + e);
 				}
 			}
 		};

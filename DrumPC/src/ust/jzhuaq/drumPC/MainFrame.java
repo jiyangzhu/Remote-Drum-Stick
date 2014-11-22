@@ -1,6 +1,5 @@
 package ust.jzhuaq.drumPC;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -8,23 +7,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JFrame;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import ust.jzhuaq.drumPC.listener.CursorMovementHandle;
 import ust.jzhuaq.drumPC.listener.StateChangeHandle;
-import ust.jzhuaq.drumPC.listener.StateChangeListener;
 import ust.jzhuaq.drumPC.listener.StateChangeManager;
-
-import javax.swing.JTextField;
 
 public class MainFrame extends JFrame {
 

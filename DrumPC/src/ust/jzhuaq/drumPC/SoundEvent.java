@@ -155,7 +155,6 @@ public class SoundEvent {
 
 	private void noteOff() {
 		this.receiver.send(this.shortMsgOFF, -1);
-		System.out.println("noteOff");
 	}
 
 }
