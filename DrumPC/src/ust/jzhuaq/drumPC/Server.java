@@ -34,9 +34,6 @@ public class Server {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		/*
-		 * MainFrame mainFrame = new MainFrame(); mainFrame.buildUI();
-		 */
 
 		Thread thread = new Thread() {
 
@@ -46,25 +43,21 @@ public class Server {
 				getAddress.run();
 				ipString = getAddress.ipString;
 				initFrame();
-				// isConnected = true;
 				System.out.println("Server is running.\nThe IP address is "
 						+ getAddress.ipString);
 				try {
 					receiver = new OSCPortIn(Config.port);
-					System.out.println("Server is running.");
 
 					OSCListener listener = new OSCListener() {
 
 						@Override
 						public void acceptMessage(Date arg0, OSCMessage arg1) {
-							// TODO Auto-generated method stub
 							if (arg1 != null) {
-								System.out.println("Connected");
 								isConnected = true;
 								ipString = "0";
 								MainFrame.stateChangeManager.isConnect();
 								List<Object> args = arg1.getArguments();
-								if (args.size() != 0) {
+								if ((args!= null) && (args.size() != 0)) {
 									mouse.getCommands(args);
 								}
 							}
@@ -73,13 +66,10 @@ public class Server {
 					};
 
 					receiver.addListener("/msg", listener);
-					System.out.println("Server is running.2");
 					receiver.startListening();
 					if (receiver.isListening())
-						System.out.println("Server is running.3");
 					receiver.run();
 				} catch (SocketException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println("error" + e);
 				}

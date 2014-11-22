@@ -26,16 +26,15 @@ import ust.jzhuaq.drumPC.listener.StateChangeManager;
 
 import javax.swing.JTextField;
 
+public class MainFrame extends JFrame {
 
-public class MainFrame extends JFrame{
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JPanel drumsPanel;
-	private JPanel controlPanel;
 	private Dimension frameSize;
-	private int controlHeight = 100; 
-	private int actualHeight = 50;
-
 	private String ipLabel = "The IP Address:      ";
 
 	public static String onConnection = "Connection:    ON";
@@ -44,22 +43,20 @@ public class MainFrame extends JFrame{
 	private String cursorMove = "Cursor Movement";
 	public static String cursorX = "X:   ";
 	public static String cursorY = "Y:   ";
-	
+
 	SoundGenerator soundGenerator;
-	
+
 	private SoundEvent[] sound = new SoundEvent[7];
-	
 
 	public static StateChangeManager stateChangeManager;
-	private JTextField textField;
 	/**
 	 * Create the application.
 	 */
 	public MainFrame() {
-		
+
 		this.soundGenerator = new SoundGenerator();
 		this.stateChangeManager = new StateChangeManager();
-		
+
 		this.sound[0] = new SoundEvent(SoundEvent.NOTE_DRUM_0);
 		this.sound[1] = new SoundEvent(SoundEvent.NOTE_DRUM_1);
 		this.sound[2] = new SoundEvent(SoundEvent.NOTE_DRUM_2);
@@ -67,12 +64,11 @@ public class MainFrame extends JFrame{
 		this.sound[4] = new SoundEvent(SoundEvent.NOTE_DRUM_4);
 		this.sound[5] = new SoundEvent(SoundEvent.NOTE_DRUM_5);
 		this.sound[6] = new SoundEvent(SoundEvent.NOTE_DRUM_6);
-		
+
 		this.initialize();
 	}
-	
-	
-	public void buildUI(){
+
+	public void buildUI() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -84,7 +80,7 @@ public class MainFrame extends JFrame{
 			}
 		});
 	}
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -95,18 +91,18 @@ public class MainFrame extends JFrame{
 		frameSize = frame.getSize();
 		initializeDrumsPanel();
 
-
 	}
 
 	private void initializeDrumsPanel() {
 		drumsPanel = new JPanel();
-		
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0 };
-		gridBagLayout.rowWeights = new double[] { 2.0, 1.0, 2.0, Double.MIN_VALUE, Double.MIN_VALUE};
-		
+		gridBagLayout.rowWeights = new double[] { 2.0, 1.0, 2.0,
+				Double.MIN_VALUE, Double.MIN_VALUE };
+
 		drumsPanel.setLayout(gridBagLayout);
 		drumsPanel.setPreferredSize(new Dimension((int) frameSize.getWidth(),
 				(int) frameSize.getHeight()));
@@ -115,7 +111,7 @@ public class MainFrame extends JFrame{
 		JButton btnCrybal_0 = new JButton("Cymbal");
 		btnCrybal_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sound[0].play();	
+				sound[0].play();
 			}
 		});
 		GridBagConstraints gbc_btnCrybal_0 = new GridBagConstraints();
@@ -152,8 +148,7 @@ public class MainFrame extends JFrame{
 		gbc_btnToms_1.gridy = 0;
 		gbc_btnToms_1.gridheight = 2;
 		drumsPanel.add(btnToms_1, gbc_btnToms_1);
-		
-		
+
 		JButton btnCrybal_1 = new JButton("Cymbal");
 		btnCrybal_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -166,9 +161,7 @@ public class MainFrame extends JFrame{
 		gbc_btnCrybal_1.gridx = 3;
 		gbc_btnCrybal_1.gridy = 0;
 		drumsPanel.add(btnCrybal_1, gbc_btnCrybal_1);
-		
-		
-		
+
 		JButton btnSnare = new JButton("Snare drum");
 		btnSnare.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -182,7 +175,7 @@ public class MainFrame extends JFrame{
 		gbc_btnSnare.gridy = 1;
 		gbc_btnSnare.gridheight = 2;
 		drumsPanel.add(btnSnare, gbc_btnSnare);
-		
+
 		JButton btnBass = new JButton("Bass drum");
 		btnBass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -196,7 +189,7 @@ public class MainFrame extends JFrame{
 		gbc_btnBass.gridy = 2;
 		gbc_btnBass.gridwidth = 2;
 		drumsPanel.add(btnBass, gbc_btnBass);
-		
+
 		JButton btnFloor = new JButton("Floor drum");
 		btnFloor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -210,7 +203,7 @@ public class MainFrame extends JFrame{
 		gbc_btnFloor.gridy = 1;
 		gbc_btnFloor.gridheight = 2;
 		drumsPanel.add(btnFloor, gbc_btnFloor);
-		
+
 		JLabel lblIP = new JLabel();
 		lblIP.setText(ipLabel + Server.ipString);
 		lblIP.setHorizontalAlignment(JLabel.LEFT);
@@ -221,7 +214,7 @@ public class MainFrame extends JFrame{
 		gbc_lblIP.gridy = 3;
 		gbc_lblIP.gridwidth = 2;
 		drumsPanel.add(lblIP, gbc_lblIP);
-		
+
 		JLabel lblState = new JLabel();
 		stateChangeManager.addListener(new StateChangeHandle(lblState));
 		GridBagConstraints gbc_lblState = new GridBagConstraints();
@@ -235,139 +228,36 @@ public class MainFrame extends JFrame{
 			lblState.setText(offConnection);
 		}
 		drumsPanel.add(lblState, gbc_lblState);
-		
-		
+
 		JLabel lblCursorMove = new JLabel(cursorMove);
-		GridBagConstraints gbc_lblCursorMove= new GridBagConstraints();
+		GridBagConstraints gbc_lblCursorMove = new GridBagConstraints();
 		gbc_lblCursorMove.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCursorMove.gridx = 0;
 		gbc_lblCursorMove.gridy = 4;
 		gbc_lblCursorMove.fill = GridBagConstraints.BOTH;
 		drumsPanel.add(lblCursorMove, gbc_lblCursorMove);
-		
+
 		JLabel lblCursorX = new JLabel(cursorX);
-		GridBagConstraints gbc_lblCursorX= new GridBagConstraints();
+		GridBagConstraints gbc_lblCursorX = new GridBagConstraints();
 		gbc_lblCursorX.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCursorX.gridx = 1;
 		gbc_lblCursorX.gridy = 4;
 		gbc_lblCursorX.fill = GridBagConstraints.BOTH;
 		drumsPanel.add(lblCursorX, gbc_lblCursorX);
-		
+
 		JLabel lblCursorY = new JLabel(cursorY);
-		GridBagConstraints gbc_lblCursorY= new GridBagConstraints();
+		GridBagConstraints gbc_lblCursorY = new GridBagConstraints();
 		gbc_lblCursorY.insets = new Insets(0, 0, 5, 0);
 		gbc_lblCursorY.gridx = 2;
 		gbc_lblCursorY.gridy = 4;
 		gbc_lblCursorY.fill = GridBagConstraints.BOTH;
 		drumsPanel.add(lblCursorY, gbc_lblCursorY);
-		
-		stateChangeManager.addListener(new CursorMovementHandle(lblCursorX, lblCursorY));
-		
-		
-		/*JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[0].play();
-				//soundGenerator.play(60);
-				
-			}
-		});
-		drumsPanel.add(btn0);
 
-		JButton btn1 = new JButton("1");
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[1].play();
-				//soundGenerator.play(50);
-			}
-		});
-		drumsPanel.add(btn1);
-
-		JButton btn2 = new JButton("2");
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[2].play();
-				//soundGenerator.play(45);
-			}
-		});
-		drumsPanel.add(btn2);
-
-		JButton btn3 = new JButton("3");
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[3].play();
-				//soundGenerator.play(65);
-			}
-		});
-
-		drumsPanel.add(btn3);
-
-		JButton btn4 = new JButton("4");
-		btn4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[4].play();
-				//soundGenerator.play(55);
-			}
-		});
-		drumsPanel.add(btn4);
-
-		JButton btn5 = new JButton("5");
-		btn5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				sound[5].play();
-				//soundGenerator.play(70);
-			}
-		});
-		drumsPanel.add(btn5);*/
-
-		
+		stateChangeManager.addListener(new CursorMovementHandle(lblCursorX,
+				lblCursorY));
 	}
 
-	private void initializeControlPanel() {
-		controlPanel = new JPanel();
-		controlPanel.setLayout(new GridLayout(0, 3, 0, 0));
-
-		controlPanel.setPreferredSize(new Dimension((int) frameSize.getWidth(),
-				actualHeight));
-
-		frame.getContentPane().add(controlPanel, BorderLayout.SOUTH);
-		
-		
-
-		JLabel lblIP = new JLabel();
-		lblIP.setText(ipLabel + Server.ipString);
-		controlPanel.add(lblIP);
-		
-		controlPanel.add(new JLabel());		//empty
-		
-		
-		
-		JLabel lblState = new JLabel();
-		stateChangeManager.addListener(new StateChangeHandle(lblState));
-		if (Server.isConnected) {
-			lblState.setText(onConnection);
-		} else {
-			lblState.setText(offConnection);
-		}
-		controlPanel.add(lblState);
-		
-		
-		
-		JLabel lblNewLabel = new JLabel(cursorMove);
-		controlPanel.add(lblNewLabel);
-		
-		JLabel lblCursorX = new JLabel(cursorX);
-		controlPanel.add(lblCursorX);
-		
-		JLabel lblCursorY = new JLabel(cursorY);
-		controlPanel.add(lblCursorY);
-		
-		stateChangeManager.addListener(new CursorMovementHandle(lblCursorX, lblCursorY));
-		
-		
-	}
-
-	public void refresh(){
+	public void refresh() {
 		this.revalidate();
 		this.repaint();
 	}
