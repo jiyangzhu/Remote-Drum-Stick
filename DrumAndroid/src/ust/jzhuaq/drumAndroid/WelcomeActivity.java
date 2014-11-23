@@ -31,7 +31,6 @@ import android.widget.EditText;
  */
 public class WelcomeActivity extends ActionBarActivity {
 	private EditText etAddress;
-	private EditText etMSG;
 	private String ipString;
 
 	public static OSCPortOut sender;
@@ -39,9 +38,8 @@ public class WelcomeActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_welcome);
 		etAddress = (EditText) findViewById(R.id.etAddress);
-		etMSG = (EditText) findViewById(R.id.etMSG);
 	}
 
 	public void connect(View v) {
@@ -57,16 +55,6 @@ public class WelcomeActivity extends ActionBarActivity {
 			ipValidationDialog.show();
 		}
 
-	}
-
-	public void send(View v) {
-		Log.i("TAG", "Input MSG is: " + etMSG.getText().toString());
-		Collection<Object> args = new ArrayList<Object>();
-		args.add(etMSG.getText().toString());
-
-		OSCMessage msg = new OSCMessage("/msg", args);
-
-		new sendMsg().execute(msg);
 	}
 
 	private class establishConnect extends AsyncTask<String, Void, String> {
@@ -86,26 +74,6 @@ public class WelcomeActivity extends ActionBarActivity {
 				Log.e("OSC", "ERROR+ " + e);
 			}
 
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-		}
-
-	}
-
-	public class sendMsg extends AsyncTask<OSCMessage, Void, String> {
-
-		@Override
-		protected String doInBackground(OSCMessage... params) {
-
-			try {
-
-				sender.send(params[0]);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			return null;
 		}
 

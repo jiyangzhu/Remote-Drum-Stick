@@ -7,4 +7,6 @@
 	<string name="ip_invalid">Please input valid IP address</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
+	<string name="connect">Connect</string>
+	<string name="ip_hint">IP Address</string>
 </resources>
