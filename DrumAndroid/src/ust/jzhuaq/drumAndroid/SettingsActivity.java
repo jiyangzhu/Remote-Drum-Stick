@@ -57,8 +57,8 @@ public class SettingsActivity extends Activity {
 		View layout = inflater.inflate(R.layout.dialog_sensitivity,
 				(ViewGroup) findViewById(R.id.layout_dialog), false);
 		sensitivityDialog.setView(layout);
-		senValueView = (TextView) layout.findViewById(R.id.tv_sensivity);
-		senSeekBar = (SeekBar) layout.findViewById(R.id.sb_sensivity);
+		senValueView = (TextView) layout.findViewById(R.id.tv_sensitivity);
+		senSeekBar = (SeekBar) layout.findViewById(R.id.sb_sensitivity);
 
 		senValueView.setText(Integer.toString(settings.getInt(
 				Constants.PREFS_KEY_SENSITIVITY, Constants.SENSITIVY_DEFAULT)));

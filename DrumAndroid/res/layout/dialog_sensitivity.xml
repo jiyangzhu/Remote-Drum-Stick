@@ -5,18 +5,18 @@
     android:layout_height="match_parent" >
 
     <SeekBar
-        android:id="@+id/sb_sensivity"
+        android:id="@+id/sb_sensitivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:layout_marginTop="18dp" />
 
     <TextView
-        android:id="@+id/tv_sensivity"
+        android:id="@+id/tv_sensitivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/sb_sensivity"
-        android:layout_below="@+id/sb_sensivity"
+        android:layout_alignRight="@+id/sb_sensitivity"
+        android:layout_below="@+id/sb_sensitivity"
         android:layout_margin="10sp"
         android:text="0" />
 

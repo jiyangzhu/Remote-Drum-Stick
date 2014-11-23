@@ -53,7 +53,7 @@ public class ControlActivity extends Activity implements SensorEventListener {
 	private int currY = 0;
 	private int currZ = 0;
 
-	private int sensivity;
+	private int sensitivity;
 	private SharedPreferences myPrefs;
 
 	@Override
@@ -61,7 +61,7 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_control);
 		myPrefs = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
-		sensivity = myPrefs.getInt(Constants.PREFS_KEY_SENSITIVITY,
+		sensitivity = myPrefs.getInt(Constants.PREFS_KEY_SENSITIVITY,
 				Constants.SENSITIVY_DEFAULT);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		mAccelerometer = mSensorManager
@@ -210,9 +210,9 @@ public class ControlActivity extends Activity implements SensorEventListener {
 
 		Collection<Object> args = new ArrayList<Object>();
 
-		x *= sensivity;
-		y *= sensivity;
-		z *= sensivity;
+		x *= sensitivity;
+		y *= sensitivity;
+		z *= sensitivity;
 		args.add(1);
 		args.add(2);
 		args.add(type);
