@@ -17,6 +17,7 @@ import com.illposed.osc.OSCPortOut;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,12 +35,18 @@ public class WelcomeActivity extends ActionBarActivity {
 	private String ipString;
 
 	public static OSCPortOut sender;
+	
+	private SharedPreferences ipSaved;
+	private SharedPreferences.Editor editor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		etAddress = (EditText) findViewById(R.id.etAddress);
+		ipSaved = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
+		editor = ipSaved.edit();
+		etAddress.setText(ipSaved.getString(Constants.PREFS_KEY_IP, ""));
 	}
 
 	public void connect(View v) {
@@ -50,6 +57,8 @@ public class WelcomeActivity extends ActionBarActivity {
 		InetAddressValidator iav = new InetAddressValidator();
 		if ((ipString != null) && iav.isValid(ipString)) {
 			new establishConnect().execute(etAddress.getText().toString());
+			editor.putString(Constants.PREFS_KEY_IP, etAddress.getText().toString());
+			editor.commit();
 		} else {
 			IpValidationDialog ipValidationDialog = new IpValidationDialog(this);
 			ipValidationDialog.show();

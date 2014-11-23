@@ -2,6 +2,9 @@ package ust.jzhuaq.drumAndroid.util;
 
 public class Constants {
 
+	public final static String PREFS_NAME = "MyPrefsFile";
+	public final static String PREFS_KEY_IP = "ip";
+	
 	public final static int EVENT_CLICK = 0;
 	public final static int EVENT_CURSOR = 1;
 	public final static int EVENT_DISCONNECT = 2;
