@@ -5,7 +5,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.PointerInfo;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -17,13 +16,8 @@ import ust.jzhuaq.drumPC.MainFrame;
 public class MouseMovement {
 	private Robot robot;
 
-	private float xLeftover = 0;
-	private float yLeftover = 0;
-
 	private GraphicsDevice[] gDevices;
 	private Rectangle[] gBounds;
-
-	private static final float sensitivity = 5f;
 
 	int currX;
 	int currY;
@@ -110,38 +104,6 @@ public class MouseMovement {
 		this.robot.mouseMove(currX, currY);
 		cursorMove = new Cursor(z, x);
 		MainFrame.stateChangeManager.cursorMove(cursorMove);
-	}
-
-	public void mouseMove(float xOffset, float yOffset) {
-		PointerInfo info = MouseInfo.getPointerInfo();
-		if (info != null) {
-			java.awt.Point p = info.getLocation();
-			float ox = (xOffset * sensitivity) + xLeftover;
-			float oy = (yOffset * sensitivity) + yLeftover;
-			int ix = Math.round(ox);
-			int iy = Math.round(oy);
-			xLeftover = ox - ix;
-			yLeftover = oy - iy;
-			//
-			p.x += ix;
-			p.y += iy;
-			int l = this.gBounds.length;
-			for (int i = 0; i < l; ++i) {
-				if (this.gBounds[i].contains(p)) {
-					this.robot.mouseMove(p.x, p.y);
-					break;
-				}
-			}
-
-			try {
-				this.robot.mouseMove(p.x, p.y);// for systems with quick bounds
-												// checking, allow mouse to move
-												// smoothly along to and left
-												// edges
-			} catch (Exception e) {
-			}
-
-		}
 	}
 
 }
