@@ -65,11 +65,16 @@ public class WelcomeActivity extends ActionBarActivity {
 			try {
 				sender = new OSCPortOut(InetAddress.getByName(etAddress
 						.getText().toString()), Constants.port);
+				sender.send(new OSCMessage(Constants.ADDRESS_SELECTOR_CONNECT));
 				Log.i("TAG", "Link established");
 				Intent i = new Intent();
 				i.setClass(WelcomeActivity.this, ControlPanel.class);
 				startActivity(i);
 			} catch (SocketException | UnknownHostException e) {
+				e.printStackTrace();
+				Log.e("OSC", "ERROR+ " + e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 				Log.e("OSC", "ERROR+ " + e);
 			}

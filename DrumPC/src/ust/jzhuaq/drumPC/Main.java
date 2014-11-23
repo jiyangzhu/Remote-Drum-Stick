@@ -5,20 +5,20 @@ import java.net.SocketException;
 import java.util.Date;
 import java.util.List;
 
+import ust.jzhuaq.drumPC.Util.Constants;
 import ust.jzhuaq.drumPC.Util.Mouse;
 
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
 
-public class Server {
+public class Main {
 	public static Mouse mouse;
 	public static OSCPortIn receiver = null;
 	public static String ipString;
 	public static boolean isConnected = false;
 	private static MainFrame frame;
 
-	
 	public static void main(String[] args) {
 		try {
 			mouse = new Mouse();
@@ -37,18 +37,42 @@ public class Server {
 				System.out.println("Server is running.\nThe IP address is "
 						+ getAddress.ipString);
 				try {
-					receiver = new OSCPortIn(Config.port);
+					receiver = new OSCPortIn(Constants.port);
+
+					OSCListener connListener = new OSCListener() {
+
+						@Override
+						public void acceptMessage(Date arg0, OSCMessage arg1) {
+							System.out.println("Connectedddddddd");
+							isConnected = true;
+							MainFrame.stateChangeManager.isConnect();
+						}
+					};
+
+					receiver.addListener(Constants.ADDRESS_SELECTOR_CONNECT,
+							connListener);
+
+					OSCListener disConnListener = new OSCListener() {
+
+						@Override
+						public void acceptMessage(Date arg0, OSCMessage arg1) {
+							System.out.println("DISConnectedddddddd");
+							isConnected = false;
+							MainFrame.stateChangeManager.unConnect();
+						}
+					};
+
+					receiver.addListener(Constants.ADDRESS_SELECTOR_DISCONNECT,
+							disConnListener);
 
 					OSCListener listener = new OSCListener() {
 
 						@Override
 						public void acceptMessage(Date arg0, OSCMessage arg1) {
-							if (arg1 != null) {
-								isConnected = true;
-								ipString = "0";
-								MainFrame.stateChangeManager.isConnect();
+							if ((arg1 != null)&&isConnected) {
+
 								List<Object> args = arg1.getArguments();
-								if ((args!= null) && (args.size() != 0)) {
+								if ((args != null) && (args.size() != 0)) {
 									mouse.getCommands(args);
 								}
 							}
@@ -56,10 +80,12 @@ public class Server {
 						}
 					};
 
-					receiver.addListener("/msg", listener);
+					receiver.addListener(Constants.ADDRESS_SELECTOR_MSG,
+							listener);
+
 					receiver.startListening();
 					if (receiver.isListening())
-					receiver.run();
+						receiver.run();
 				} catch (SocketException e) {
 					e.printStackTrace();
 					System.out.println("error" + e);
@@ -77,8 +103,8 @@ public class Server {
 		frame = new MainFrame();
 		frame.buildUI();
 	}
-	
-	public static void refreshFrame(){
+
+	public static void refreshFrame() {
 		frame.revalidate();
 		frame.repaint();
 		frame.revalidate();

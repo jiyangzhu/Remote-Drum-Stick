@@ -84,7 +84,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 	 */
 	public void disconnect(View v) {
 		// Log.i("TAG", "Click button click.");
-		sendMouseEvent(Constants.EVENT_DISCONNECT, 0, 0, 0);
+		sendConnEvent(Constants.ADDRESS_SELECTOR_DISCONNECT);
 		this.finish();
 	}
 
@@ -148,7 +148,22 @@ public class ControlPanel extends Activity implements SensorEventListener {
 				SensorManager.SENSOR_DELAY_FASTEST);
 	}
 
-
+	/**
+	 * Send "Connect" or "Disconnect" event.
+	 * @param selector	address selector
+	 */
+	private void sendConnEvent(String selector){
+		OSCMessage msg = new OSCMessage(selector);
+		new SendMsg().execute(msg);
+	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	private void sendMouseEvent(int type, int x, int y, int z) {
 
 		Collection<Object> args = new ArrayList<Object>();
@@ -160,7 +175,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 		args.add(y);
 		args.add(z);
 
-		OSCMessage msg = new OSCMessage("/msg", args);
+		OSCMessage msg = new OSCMessage(Constants.ADDRESS_SELECTOR_MSG, args);
 		new SendMsg().execute(msg);
 
 	}

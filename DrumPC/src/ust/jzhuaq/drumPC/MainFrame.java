@@ -199,7 +199,7 @@ public class MainFrame extends JFrame {
 		drumsPanel.add(btnFloor, gbc_btnFloor);
 
 		JLabel lblIP = new JLabel();
-		lblIP.setText(ipLabel + Server.ipString);
+		lblIP.setText(ipLabel + Main.ipString);
 		lblIP.setHorizontalAlignment(JLabel.LEFT);
 		GridBagConstraints gbc_lblIP = new GridBagConstraints();
 		gbc_lblIP.insets = new Insets(0, 0, 5, 5);
@@ -216,7 +216,7 @@ public class MainFrame extends JFrame {
 		gbc_lblState.gridx = 2;
 		gbc_lblState.gridy = 3;
 		gbc_lblState.fill = GridBagConstraints.BOTH;
-		if (Server.isConnected) {
+		if (Main.isConnected) {
 			lblState.setText(onConnection);
 		} else {
 			lblState.setText(offConnection);
