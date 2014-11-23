@@ -87,6 +87,7 @@ public class MainFrame extends JFrame {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		frameSize = frame.getSize();
 		initializeDrumsPanel();
 
