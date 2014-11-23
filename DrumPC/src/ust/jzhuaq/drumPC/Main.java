@@ -43,7 +43,6 @@ public class Main {
 
 						@Override
 						public void acceptMessage(Date arg0, OSCMessage arg1) {
-							System.out.println("Connectedddddddd");
 							isConnected = true;
 							MainFrame.stateChangeManager.isConnect();
 						}
@@ -56,7 +55,6 @@ public class Main {
 
 						@Override
 						public void acceptMessage(Date arg0, OSCMessage arg1) {
-							System.out.println("DISConnectedddddddd");
 							isConnected = false;
 							MainFrame.stateChangeManager.unConnect();
 						}

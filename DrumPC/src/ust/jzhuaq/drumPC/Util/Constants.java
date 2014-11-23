@@ -39,4 +39,5 @@ public class Constants {
 	public final static String PATH_DRUM_4 = "images/img_4.png";
 	public final static String PATH_DRUM_5 = "images/img_5.png";
 	public final static String PATH_DRUM_6 = "images/img_6.png";
+	public final static String PATH_CURSOR = "images/img_cursor.png";
 }
