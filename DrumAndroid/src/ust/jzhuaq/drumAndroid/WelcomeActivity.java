@@ -36,7 +36,7 @@ public class WelcomeActivity extends ActionBarActivity {
 
 	public static OSCPortOut sender;
 	
-	private SharedPreferences ipSaved;
+	private SharedPreferences myPrefs;
 	private SharedPreferences.Editor editor;
 
 	@Override
@@ -44,9 +44,9 @@ public class WelcomeActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		etAddress = (EditText) findViewById(R.id.etAddress);
-		ipSaved = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
-		editor = ipSaved.edit();
-		etAddress.setText(ipSaved.getString(Constants.PREFS_KEY_IP, ""));
+		myPrefs = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
+		editor = myPrefs.edit();
+		etAddress.setText(myPrefs.getString(Constants.PREFS_KEY_IP, ""));
 	}
 
 	public void connect(View v) {

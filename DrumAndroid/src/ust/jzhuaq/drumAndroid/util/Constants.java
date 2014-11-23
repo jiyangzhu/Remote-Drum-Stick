@@ -4,6 +4,9 @@ public class Constants {
 
 	public final static String PREFS_NAME = "MyPrefsFile";
 	public final static String PREFS_KEY_IP = "ip";
+	public final static String PREFS_KEY_SENSITIVITY = "sen";
+	
+	public final static int SENSITIVY_DEFAULT = 1;
 	
 	public final static int EVENT_CLICK = 0;
 	public final static int EVENT_CURSOR = 1;

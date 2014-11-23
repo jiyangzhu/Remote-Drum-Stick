@@ -10,4 +10,8 @@
 	<string name="connect">Connect</string>
 	<string name="ip_hint">IP Address</string>
 	<string name="disconnect">Disconnect</string>
+	<string name="general">GENERAL</string>
+	<string name="sensitivity">Cursor Sensitivity</string>
+	<string name="about">About</string>
+	<string name="other">OTHER</string>
 </resources>

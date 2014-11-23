@@ -7,13 +7,18 @@ import ust.jzhuaq.drumAndroid.util.Constants;
 
 import com.illposed.osc.OSCMessage;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.service.textservice.SpellCheckerService.Session;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 /**
@@ -48,10 +53,16 @@ public class ControlActivity extends Activity implements SensorEventListener {
 	private int currY = 0;
 	private int currZ = 0;
 
+	private int sensivity;
+	private SharedPreferences myPrefs;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_control);
+		myPrefs = getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
+		sensivity = myPrefs.getInt(Constants.PREFS_KEY_SENSITIVITY,
+				Constants.SENSITIVY_DEFAULT);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		mAccelerometer = mSensorManager
 				.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -66,14 +77,18 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		mGyroMultiValue = 1000.0f; // 9.0f 200.0f
 		addition = 0.0f; // 180.0f
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		mSensorManager.registerListener(this, mGyroscope,
 				SensorManager.SENSOR_DELAY_FASTEST);
 	}
-	
+
+	/**
+	 * Disconnect and unregister sensorManager listener when user leaving this
+	 * activity.
+	 */
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -81,6 +96,26 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		disconnect(getCurrentFocus());
 		mSensorManager.unregisterListener(this);
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			Intent i = new Intent();
+			i.setClass(ControlActivity.this, SettingsActivity.class);
+			startActivity(i);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -92,7 +127,7 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		// Log.i("TAG", "Click button click.");
 		sendMouseEvent(Constants.EVENT_CLICK, 0, 0, 0);
 	}
-	
+
 	/**
 	 * When click the disconnect button
 	 * 
@@ -153,17 +188,17 @@ public class ControlActivity extends Activity implements SensorEventListener {
 
 	}
 
-	
-
 	/**
 	 * Send "Connect" or "Disconnect" event.
-	 * @param selector	address selector
+	 * 
+	 * @param selector
+	 *            address selector
 	 */
-	private void sendConnEvent(String selector){
+	private void sendConnEvent(String selector) {
 		OSCMessage msg = new OSCMessage(selector);
 		new SendMsg().execute(msg);
 	}
-	
+
 	/**
 	 * 
 	 * @param type
@@ -175,6 +210,9 @@ public class ControlActivity extends Activity implements SensorEventListener {
 
 		Collection<Object> args = new ArrayList<Object>();
 
+		x *= sensivity;
+		y *= sensivity;
+		z *= sensivity;
 		args.add(1);
 		args.add(2);
 		args.add(type);
