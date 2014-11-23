@@ -14,7 +14,7 @@ import java.util.List;
 import ust.jzhuaq.drumPC.Cursor;
 import ust.jzhuaq.drumPC.MainFrame;
 
-public class Mouse {
+public class MouseMovement {
 	private Robot robot;
 
 	private float xLeftover = 0;
@@ -30,7 +30,7 @@ public class Mouse {
 
 	private Cursor cursorMove;
 
-	public Mouse() throws AWTException {
+	public MouseMovement() throws AWTException {
 		robot = new Robot();
 		//
 		this.gDevices = GraphicsEnvironment.getLocalGraphicsEnvironment()

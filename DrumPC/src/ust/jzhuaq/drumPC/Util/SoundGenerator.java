@@ -1,4 +1,4 @@
-package ust.jzhuaq.drumPC;
+package ust.jzhuaq.drumPC.Util;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;

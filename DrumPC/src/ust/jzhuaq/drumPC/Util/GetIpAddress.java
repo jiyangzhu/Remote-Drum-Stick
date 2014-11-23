@@ -1,4 +1,4 @@
-package ust.jzhuaq.drumPC;
+package ust.jzhuaq.drumPC.Util;
 
 import java.net.InetAddress;
 import java.util.ArrayList;

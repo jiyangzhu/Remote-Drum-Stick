@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import ust.jzhuaq.drumPC.Util.Constants;
+import ust.jzhuaq.drumPC.Util.SoundGenerator;
 import ust.jzhuaq.drumPC.listener.CursorMovementHandle;
 import ust.jzhuaq.drumPC.listener.StateChangeHandle;
 import ust.jzhuaq.drumPC.listener.StateChangeManager;

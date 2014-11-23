@@ -6,14 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import ust.jzhuaq.drumPC.Util.Constants;
-import ust.jzhuaq.drumPC.Util.Mouse;
+import ust.jzhuaq.drumPC.Util.GetIpAddress;
+import ust.jzhuaq.drumPC.Util.MouseMovement;
 
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
 
 public class Main {
-	public static Mouse mouse;
+	public static MouseMovement mouse;
 	public static OSCPortIn receiver = null;
 	public static String ipString;
 	public static boolean isConnected = false;
@@ -21,7 +22,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			mouse = new Mouse();
+			mouse = new MouseMovement();
 		} catch (AWTException e1) {
 			e1.printStackTrace();
 		}
