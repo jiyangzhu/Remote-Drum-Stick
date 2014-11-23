@@ -22,7 +22,7 @@ import android.view.View;
  * @author Bryce
  * 
  */
-public class ControlPanel extends Activity implements SensorEventListener {
+public class ControlActivity extends Activity implements SensorEventListener {
 
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
@@ -65,6 +65,22 @@ public class ControlPanel extends Activity implements SensorEventListener {
 		}
 		mGyroMultiValue = 1000.0f; // 9.0f 200.0f
 		addition = 0.0f; // 180.0f
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mSensorManager.registerListener(this, mGyroscope,
+				SensorManager.SENSOR_DELAY_FASTEST);
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		disconnect(getCurrentFocus());
+		mSensorManager.unregisterListener(this);
+
 	}
 
 	/**
@@ -137,16 +153,7 @@ public class ControlPanel extends Activity implements SensorEventListener {
 
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		mSensorManager.registerListener(this, mAccelerometer,
-				SensorManager.SENSOR_DELAY_GAME);
-		mSensorManager.registerListener(this, mMagnetometer,
-				SensorManager.SENSOR_DELAY_GAME);
-		mSensorManager.registerListener(this, mGyroscope,
-				SensorManager.SENSOR_DELAY_FASTEST);
-	}
+	
 
 	/**
 	 * Send "Connect" or "Disconnect" event.

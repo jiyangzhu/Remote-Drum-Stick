@@ -77,7 +77,7 @@ public class WelcomeActivity extends ActionBarActivity {
 				sender.send(new OSCMessage(Constants.ADDRESS_SELECTOR_CONNECT));
 				Log.i("TAG", "Link established");
 				Intent i = new Intent();
-				i.setClass(WelcomeActivity.this, ControlPanel.class);
+				i.setClass(WelcomeActivity.this, ControlActivity.class);
 				startActivity(i);
 			} catch (SocketException | UnknownHostException e) {
 				e.printStackTrace();

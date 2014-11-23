@@ -25,9 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="SensorInfo" >
-        </activity>
-        <activity android:name="ControlPanel" >
+        <activity android:name="ControlActivity" >
         </activity>
     </application>
 
