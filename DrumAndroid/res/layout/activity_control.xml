@@ -5,14 +5,25 @@
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/btn_click"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
+        android:id="@+id/btn_disconnect"
+        style="@style/Font"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="78dp"
-        android:layout_marginTop="60dp"
+        android:background="@layout/layout_border"
+        android:onClick="disconnect"
+        android:text="@string/disconnect" />
+
+    <ImageButton
+        android:id="@+id/btn_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btn_disconnect"
+        android:background="@null"
         android:onClick="click"
-        android:text="Button" />
+        android:src="@drawable/style_hit_drum" />
 
 </RelativeLayout>

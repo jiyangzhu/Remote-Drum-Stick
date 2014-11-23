@@ -15,7 +15,7 @@
         android:layout_alignLeft="@+id/etAddress"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:src="@drawable/ic_welcome" />
+        android:src="@drawable/img_welcome" />
 
     <EditText
         android:id="@+id/etAddress"

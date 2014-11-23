@@ -30,4 +30,6 @@ proguard/
 # Personal Files
 *.todo
 *.personal
+*.xls
+*.bat
 

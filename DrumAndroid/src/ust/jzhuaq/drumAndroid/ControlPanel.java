@@ -68,13 +68,24 @@ public class ControlPanel extends Activity implements SensorEventListener {
 	}
 
 	/**
-	 * When click the button
+	 * When click the hit img button
 	 * 
 	 * @param v
 	 */
 	public void click(View v) {
 		// Log.i("TAG", "Click button click.");
 		sendMouseEvent(Constants.EVENT_CLICK, 0, 0, 0);
+	}
+	
+	/**
+	 * When click the disconnect button
+	 * 
+	 * @param v
+	 */
+	public void disconnect(View v) {
+		// Log.i("TAG", "Click button click.");
+		sendMouseEvent(Constants.EVENT_DISCONNECT, 0, 0, 0);
+		this.finish();
 	}
 
 	@Override
