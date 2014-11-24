@@ -14,4 +14,14 @@
 	<string name="sensitivity">Cursor Sensitivity</string>
 	<string name="about">About</string>
 	<string name="other">OTHER</string>
+	<string name="esc">Esc</string>
+	<string name="task_switch">Task Switch</string>
+	<string name="pg_up">Page Up</string>
+	<string name="pg_dn">Page Down</string>
+	<string name="up">Up</string>
+	<string name="down">Down</string>
+	<string name="left">Left</string>
+	<string name="right">Right</string>
+	<string name="to_control">Control</string>
+	<string name="to_keyboard">Keyboard</string>
 </resources>

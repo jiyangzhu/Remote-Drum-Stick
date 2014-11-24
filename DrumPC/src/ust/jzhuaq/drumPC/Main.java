@@ -7,14 +7,14 @@ import java.util.List;
 
 import ust.jzhuaq.drumPC.Util.Constants;
 import ust.jzhuaq.drumPC.Util.GetIpAddress;
-import ust.jzhuaq.drumPC.Util.MouseMovement;
+import ust.jzhuaq.drumPC.Util.MouseAction;
 
 import com.illposed.osc.OSCListener;
 import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortIn;
 
 public class Main {
-	public static MouseMovement mouse;
+	public static MouseAction action;
 	public static OSCPortIn receiver = null;
 	public static String ipString;
 	public static boolean isConnected = false;
@@ -22,7 +22,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			mouse = new MouseMovement();
+			action = new MouseAction();
 		} catch (AWTException e1) {
 			e1.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class Main {
 				System.out.println("Server is running.\nThe IP address is "
 						+ getAddress.ipString);
 				try {
-					receiver = new OSCPortIn(Constants.port);
+					receiver = new OSCPortIn(Constants.PORT);
 
 					OSCListener connListener = new OSCListener() {
 
@@ -71,8 +71,8 @@ public class Main {
 							if ((arg1 != null)&&isConnected) {
 
 								List<Object> args = arg1.getArguments();
-								if ((args != null) && (args.size() != 0)) {
-									mouse.getCommands(args);
+								if ((args != null) && (args.size() > 5)) {
+									action.getCommands(args);
 								}
 							}
 
@@ -81,6 +81,25 @@ public class Main {
 
 					receiver.addListener(Constants.ADDRESS_SELECTOR_MSG,
 							listener);
+					
+					OSCListener keyListener = new OSCListener() {
+
+						@Override
+						public void acceptMessage(Date arg0, OSCMessage arg1) {
+							if ((arg1 != null)&&isConnected) {
+
+								List<Object> args = arg1.getArguments();
+								if ((args != null) && (args.size() != 0)) {
+									action.getKeyCommands(args);
+									System.out.println("keyboard");
+								}
+							}
+
+						}
+					};
+
+					receiver.addListener(Constants.ADDRESS_SELECTOR_KEYBOARD,
+							keyListener);
 
 					receiver.startListening();
 					if (receiver.isListening())

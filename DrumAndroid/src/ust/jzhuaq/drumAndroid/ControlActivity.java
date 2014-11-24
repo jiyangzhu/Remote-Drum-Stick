@@ -177,6 +177,7 @@ public class ControlActivity extends Activity implements SensorEventListener {
 				lastY = currY;
 				lastZ = currZ;
 			}
+			Log.i("currZ", ""+values[0]*this.mGyroMultiValue);
 			sendMouseEvent(Constants.EVENT_CURSOR, currX - lastX,
 					currY - lastY, currZ - lastZ);
 
@@ -213,8 +214,8 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		x *= sensitivity;
 		y *= sensitivity;
 		z *= sensitivity;
-		args.add(1);
-		args.add(2);
+		args.add(1);	//non-used
+		args.add(2);	//non-used
 		args.add(type);
 		args.add(x);
 		args.add(y);

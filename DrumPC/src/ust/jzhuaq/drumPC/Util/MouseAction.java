@@ -8,12 +8,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import ust.jzhuaq.drumPC.Cursor;
 import ust.jzhuaq.drumPC.MainFrame;
 
-public class MouseMovement {
+public class MouseAction {
 	private Robot robot;
 
 	private GraphicsDevice[] gDevices;
@@ -24,7 +25,7 @@ public class MouseMovement {
 
 	private Cursor cursorMove;
 
-	public MouseMovement() throws AWTException {
+	public MouseAction() throws AWTException {
 		robot = new Robot();
 		//
 		this.gDevices = GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -67,10 +68,23 @@ public class MouseMovement {
 			break;
 		case Constants.EVENT_CURSOR:
 			move(x, y, z);
+			break;
 		default:
 			break;
 		}
 	}
+	
+	public void getKeyCommands(List<Object> args) {
+		int key = -1;
+		try {
+			key = Integer.parseInt(args.get(0).toString());
+		} catch (NumberFormatException e) {
+			return;
+		}
+		
+		keyboard(key);
+	}
+	
 
 	/**
 	 * 0: left; 1: right
@@ -106,4 +120,46 @@ public class MouseMovement {
 		MainFrame.stateChangeManager.cursorMove(cursorMove);
 	}
 
+	private void keyboard(int key){
+		System.out.println("keybardaction  " + key);
+		switch (key) {
+		case Constants.KEY_UP:
+			this.robot.keyPress(KeyEvent.VK_UP);
+			this.robot.keyRelease(KeyEvent.VK_UP);
+			break;
+		case Constants.KEY_DOWN:
+			this.robot.keyPress(KeyEvent.VK_DOWN);
+			this.robot.keyRelease(KeyEvent.VK_DOWN);
+			break;
+		case Constants.KEY_LEFT:
+			this.robot.keyPress(KeyEvent.VK_LEFT);
+			this.robot.keyRelease(KeyEvent.VK_LEFT);
+			break;
+		case Constants.KEY_RIGHT:
+			this.robot.keyPress(KeyEvent.VK_RIGHT);
+			this.robot.keyRelease(KeyEvent.VK_RIGHT);
+			break;
+		case Constants.KEY_PGUP:
+			this.robot.keyPress(KeyEvent.VK_PAGE_UP);
+			this.robot.keyRelease(KeyEvent.VK_PAGE_UP);
+			break;
+		case Constants.KEY_PGDN:
+			this.robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+			this.robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+			break;
+		case Constants.KEY_ESC:
+			this.robot.keyPress(KeyEvent.VK_ESCAPE);
+			this.robot.keyRelease(KeyEvent.VK_ESCAPE);
+			break;
+		case Constants.KEY_TASKSWITCH:
+			System.out.println("TashSw");
+			this.robot.keyPress(KeyEvent.VK_ALT);
+			this.robot.keyPress(KeyEvent.VK_TAB);
+			this.robot.keyRelease(KeyEvent.VK_TAB);	
+			this.robot.keyRelease(KeyEvent.VK_ALT);
+			break;
+		default:
+			break;
+		}
+	}
 }

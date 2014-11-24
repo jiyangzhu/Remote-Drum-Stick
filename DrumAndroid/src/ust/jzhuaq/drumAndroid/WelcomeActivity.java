@@ -16,6 +16,7 @@ import com.illposed.osc.OSCMessage;
 import com.illposed.osc.OSCPortOut;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -49,14 +50,14 @@ public class WelcomeActivity extends ActionBarActivity {
 		etAddress.setText(myPrefs.getString(Constants.PREFS_KEY_IP, ""));
 	}
 
-	public void connect(View v) {
+	public void toControl(View v) {
 		Log.i("TAG", "Click connect button.");
 		Log.i("TAG", "Input IP is: " + etAddress.getText().toString());
-		Log.i("TAG", "Port is: " + Constants.port);
+		Log.i("TAG", "Port is: " + Constants.PORT);
 		ipString = etAddress.getText().toString();
 		InetAddressValidator iav = new InetAddressValidator();
 		if ((ipString != null) && iav.isValid(ipString)) {
-			new establishConnect().execute(etAddress.getText().toString());
+			new ControlConnect().execute(etAddress.getText().toString());
 			editor.putString(Constants.PREFS_KEY_IP, etAddress.getText().toString());
 			editor.commit();
 		} else {
@@ -65,15 +66,33 @@ public class WelcomeActivity extends ActionBarActivity {
 		}
 
 	}
+	public void toKeyboard(View v) {
+		ipString = etAddress.getText().toString();
+		InetAddressValidator iav = new InetAddressValidator();
+		if ((ipString != null) && iav.isValid(ipString)) {
+			new KeyboardConnect().execute(etAddress.getText().toString());
+			editor.putString(Constants.PREFS_KEY_IP, etAddress.getText().toString());
+			editor.commit();
+		} else {
+			IpValidationDialog ipValidationDialog = new IpValidationDialog(this);
+			ipValidationDialog.show();
+		}
 
-	private class establishConnect extends AsyncTask<String, Void, String> {
+	}
+	
+	/**
+	 * Connect to PC and turn to control page.
+	 * @author Bryce
+	 *
+	 */
+	private class ControlConnect extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
 
 			try {
 				sender = new OSCPortOut(InetAddress.getByName(etAddress
-						.getText().toString()), Constants.port);
+						.getText().toString()), Constants.PORT);
 				sender.send(new OSCMessage(Constants.ADDRESS_SELECTOR_CONNECT));
 				Log.i("TAG", "Link established");
 				Intent i = new Intent();
@@ -93,7 +112,40 @@ public class WelcomeActivity extends ActionBarActivity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			
 		}
 
+	}
+	
+	private class KeyboardConnect extends AsyncTask<String, Context, String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+				sender = new OSCPortOut(InetAddress.getByName(etAddress
+						.getText().toString()), Constants.PORT);
+				sender.send(new OSCMessage(Constants.ADDRESS_SELECTOR_CONNECT));
+				Log.i("TAG", "Link established");
+				Intent i = new Intent();
+				i.setClass(WelcomeActivity.this, KeyboardActivity.class);
+				startActivity(i);
+			} catch (SocketException | UnknownHostException e) {
+				e.printStackTrace();
+				Log.e("OSC", "ERROR+ " + e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e("OSC", "ERROR+ " + e);
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(Context... values) {
+			// TODO Auto-generated method stub
+			super.onProgressUpdate(values);
+		}
+		
 	}
 }

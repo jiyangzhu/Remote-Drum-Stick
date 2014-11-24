@@ -28,13 +28,23 @@
         android:hint="@string/ip_hint" />
 
     <Button
-        android:id="@+id/btn_connect"
+        android:id="@+id/btn_toControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/etAddress"
         android:layout_below="@+id/etAddress"
         android:layout_marginTop="47dp"
-        android:onClick="connect"
-        android:text="@string/connect" />
+        android:onClick="toControl"
+        android:text="@string/to_control" />
+
+    <Button
+        android:id="@+id/btn_toKeyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_toControl"
+        android:layout_alignBottom="@+id/btn_toControl"
+        android:layout_alignLeft="@+id/etAddress"
+        android:onClick="toKeyboard"
+        android:text="@string/to_keyboard" />
 
 </RelativeLayout>
