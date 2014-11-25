@@ -54,6 +54,8 @@ public class ControlActivity extends Activity implements SensorEventListener {
 	private int currZ = 0;
 
 	private int sensitivity;
+	private int lowFilter = 1;
+
 	private SharedPreferences myPrefs;
 
 	@Override
@@ -177,7 +179,6 @@ public class ControlActivity extends Activity implements SensorEventListener {
 				lastY = currY;
 				lastZ = currZ;
 			}
-			Log.i("currZ", ""+values[0]*this.mGyroMultiValue);
 			sendMouseEvent(Constants.EVENT_CURSOR, currX - lastX,
 					currY - lastY, currZ - lastZ);
 
@@ -211,11 +212,11 @@ public class ControlActivity extends Activity implements SensorEventListener {
 
 		Collection<Object> args = new ArrayList<Object>();
 
-		x *= sensitivity;
-		y *= sensitivity;
-		z *= sensitivity;
-		args.add(1);	//non-used
-		args.add(2);	//non-used
+		x = lowPassFilter(x) * sensitivity;
+		y = lowPassFilter(y) * sensitivity;
+		z = lowPassFilter(z) * sensitivity;
+		args.add(1); // non-used
+		args.add(2); // non-used
 		args.add(type);
 		args.add(x);
 		args.add(y);
@@ -224,6 +225,13 @@ public class ControlActivity extends Activity implements SensorEventListener {
 		OSCMessage msg = new OSCMessage(Constants.ADDRESS_SELECTOR_MSG, args);
 		new SendMsg().execute(msg);
 
+	}
+
+	private int lowPassFilter(int x) {
+		if (Math.abs(x) <= lowFilter) {
+			x = 0;
+		}
+		return x;
 	}
 
 	private class SendMsg extends AsyncTask<OSCMessage, Void, String> {
